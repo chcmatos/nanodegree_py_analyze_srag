@@ -1,8 +1,9 @@
-from enum import Enum, unique
+from base_type import BaseType
+from enum import unique
 
 #Paciente possui obesidade
 @unique
-class Obesidade(Enum):
+class Obesidade(BaseType):
     SIM = 1
     NAO = 2
     IGNORADO = 9
@@ -13,6 +14,3 @@ class Obesidade(Enum):
             2: 'Paciente não possui obesidade',
             9: 'Não foi avaliado'
         }.get(self.value, 'Indefinido')
-
-    def __str__(self):
-        return self.describe()

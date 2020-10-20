@@ -1,8 +1,9 @@
-from enum import Enum, unique
+from base_type import BaseType
+from enum import unique
 
 #Tipo de PCR. 
 @unique
-class TiposPCR(Enum):
+class TiposPCR(BaseType):
     CONVENCIONAL = 1
     TEMPO_REAL  = 2
 
@@ -11,6 +12,3 @@ class TiposPCR(Enum):
             1: 'PCR Convencional',
             2: 'PCR Em tempo real',
         }.get(self.value, 'Indefinido')
-
-    def __str__(self):
-        return self.describe()

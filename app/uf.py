@@ -1,9 +1,11 @@
-from enum import Enum, unique
+from base_type import BaseType
+from enum import unique
+
 
 # Sigla da Unidade Federativa onde está
 # localizada a unidade de saúde (ou outra fonte 
 @unique
-class UF(Enum):
+class UF(BaseType):
     RO = 11
     AC = 12
     AM = 13
@@ -62,24 +64,3 @@ class UF(Enum):
             52: 'Goiás',
             53: 'Distrito Federal'
         }.get(self.value)
-
-    @classmethod
-    def all_describe(cls, arr:list):
-        for i in arr:
-            yield cls(i).describe()
-
-    @classmethod
-    def all_describe_as_list(cls, arr:list):
-        return list(cls.all_describe(arr))
-
-    @classmethod
-    def all_names(cls, arr:list):
-        for i in arr:
-            yield cls(i).name
-
-    @classmethod
-    def all_names_as_list(cls, arr:list):
-        return list(cls.all_names(arr))
-
-    def __str__(self):
-        return self.describe()
