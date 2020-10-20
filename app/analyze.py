@@ -106,6 +106,8 @@ class Analyze:
 
     def histograma_paciente_por_mes_internacao(self):
         def df_filter(df):
+            # Disable all the no-member violations in this function
+            # pylint: disable=no-member
             df = df[(df['HOSPITAL'] == Hospitalizado.SIM.value) & (df['DT_INTERNA'].str.len() > 0)]
             df['MES'] = df['DT_INTERNA'].str.slice(3, 5)
             df = df.groupby('MES').size()
@@ -127,6 +129,8 @@ class Analyze:
         return self.__sum_column_values_by_cond__('TIPO_PCR', tipo.value)
 
     def media_internacao_SRAG_no_ano(self, ano: int):
+        # Disable all the no-member violations in this function
+        # pylint: disable=no-member
         df = pd.read_csv(self.file_name, delimiter=self.delimiter, usecols=['CLASSI_FIN', 'HOSPITAL', 'DT_INTERNA'])
         df = df[(df['HOSPITAL'] == Hospitalizado.SIM.value) & (df['CLASSI_FIN'] != SRAG.IGNORADO.value) & (pd.to_numeric(df['DT_INTERNA'].str.slice(6, 10)) == ano)]
         df = df['DT_INTERNA']        
